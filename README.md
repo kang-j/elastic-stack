@@ -41,3 +41,49 @@ $ kubectl delete pvc -l release=my-release,component=data
 
 Each requirement is configured with the options provided by that Chart.
 Please consult the relevant charts for their configuration options.
+
+## create customize chart
+
+logstashPipeline is do not support on stable OSS elastic-stack chart.
+
+Add helm repository
+
+```
+helm add repo stable https://kubernetes-charts.storage.googleapis.com/
+helm add repo elastic https://helm.elastic.co/
+```
+
+search for chart on repository
+
+```
+helm search repo elasic-stack
+helm search repo logstash
+
+helm search hub logstash
+```
+
+helm chart download
+
+```
+mkdir charts && cd charts
+helm pull stable/elastic-stack
+helm pull elastic/logstash
+```
+
+Replace to logstash 7.9.0 on elastic-stack 2.8.3 helm chart.
+
+```
+tar zxvf elastic-stack-2.0.3.tgz
+tar zxvf logstash-7.9.0.tgz
+
+rm -rf elastic-stack/charts/logstash
+mv logstash elastic-stack/charts/.
+```
+
+install customize helm chart
+
+```
+kubectl create ns observability
+helm install logging ./elastic-stack -n observability
+```
+
