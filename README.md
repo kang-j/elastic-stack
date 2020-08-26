@@ -46,14 +46,14 @@ Please consult the relevant charts for their configuration options.
 
 logstashPipeline is do not support on stable OSS elastic-stack chart.
 
-Add helm repository
+* Add helm repository
 
 ```
 helm add repo stable https://kubernetes-charts.storage.googleapis.com/
 helm add repo elastic https://helm.elastic.co/
 ```
 
-search for chart on repository
+* search for chart on repository
 
 ```
 helm search repo elasic-stack
@@ -62,7 +62,7 @@ helm search repo logstash
 helm search hub logstash
 ```
 
-helm chart download
+* helm chart download
 
 ```
 mkdir charts && cd charts
@@ -70,7 +70,7 @@ helm pull stable/elastic-stack
 helm pull elastic/logstash
 ```
 
-Replace to logstash 7.9.0 on elastic-stack 2.8.3 helm chart.
+* Replace to logstash 7.9.0 on elastic-stack 2.8.3 helm chart.
 
 ```
 tar zxvf elastic-stack-2.0.3.tgz
@@ -80,7 +80,7 @@ rm -rf elastic-stack/charts/logstash
 mv logstash elastic-stack/charts/.
 ```
 
-install customize helm chart
+* install customize helm chart
 
 ```
 kubectl create ns observability
